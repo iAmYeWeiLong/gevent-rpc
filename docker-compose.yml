@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    server:
+        build:
+             context: .
+             # 相对于本文件的路径 或 是绝对路径
+             dockerfile: ./Dockerfile
+        depends_on: []
+        ports:
+            - "4321:4321"
+        environment:
+            DEBUG: 'True'
+
+        entrypoint: /app/start_server.sh
+        volumes:
+#            []
+            - .:/app
+
+        command: []
+        tty: true
+

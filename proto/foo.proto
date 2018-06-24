@@ -1,0 +1,32 @@
+syntax = "proto3";
+package foo;
+option py_generic_services = true;
+
+import "public.proto";
+
+message TestMsg {
+    int32 bar1 = 1;
+    string bar2 = 2;
+
+
+    sfixed32 countMax = 3;
+
+
+}
+
+message TestResponse {
+    string field1 = 1;
+    bool field2 = 2;
+    fixed32 field3 = 3;
+}
+//上行(客户端主动发起)
+service TerminalToServer {
+    rpc rpc_do_something(foo.TestMsg) returns (public.Fake);
+    rpc rpc_hello_world(foo.TestMsg) returns (foo.TestResponse);
+}
+
+//下行(服务端主动发起)
+service ServerToTerminal {
+    rpc rpc_do_something (foo.TestMsg) returns (public.Fake); //活动中心信息
+
+}

@@ -1,0 +1,4 @@
+requests
+gevent
+protobuf
+python-decouple

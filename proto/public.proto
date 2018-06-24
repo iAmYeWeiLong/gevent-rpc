@@ -1,0 +1,46 @@
+syntax = "proto3";
+package public;
+
+message Fake {
+};
+
+enum PacketType {
+    TYPE_REQUEST = 0;
+    TYPE_RESPONSE = 1;
+};
+
+enum ResponseType {
+    TYPE_SUCCESS = 0;
+    TYPE_FAIL = 1;
+};
+
+
+message Fail {
+    string reason = 1; //失败原因
+    string code = 2; //失败代码
+};
+
+message Request {
+    uint64 request_id = 1; //请求id
+    string method_name = 2; //请求的方法名
+    bytes serialized = 3; //序列化后的请求消息
+
+     int64 time_stamp = 4; //发起请求的时间戳,毫秒
+     fixed32 timeout = 5;
+    //超时,若对端在规定时间内没有完成,就不用回复了,发送端会主动结束
+    //0表示不会超时
+    //单位是毫秒
+
+};
+
+message Response {
+    uint64 response_id = 1; //响应id
+    ResponseType sub_type = 2; //子类型,成功 或是 失败
+    bytes serialized = 3; //序列化后的响应消息
+};
+
+message Packet {
+    PacketType type = 1; //消息类型(请求 或 响应)
+    bytes serialized = 2; //序列化后的请求或响应或失败的消息
+    // bytes checksum = 3; //校验和,使用adler32算法
+};

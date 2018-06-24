@@ -1,0 +1,16 @@
+README.md
+Dockerfile
+docker-compose.yml
+proto
+
+.DS_Store
+__pycache__
+
+.dockerignore
+
+.gitignore
+.git
+.github
+
+.idea
+.vscode
