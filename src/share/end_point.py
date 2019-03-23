@@ -70,6 +70,7 @@ class EndPointBase(google.protobuf.service.RpcChannel):
     def this(self):
         return self
 
+    # def selfDescription # todo 未实现，当前会报错
     # TODO 改成property
     def set_host(self, host):
         self.host_ = host
