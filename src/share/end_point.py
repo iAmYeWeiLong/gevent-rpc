@@ -131,6 +131,7 @@ class EndPointBase(google.protobuf.service.RpcChannel):
         except DecodeError:
             text = '收到的逻辑包有误,反序列化出错,收到字节流是"%r"' % buffer_bytes
             self.log('debug', text)
+            return
 
         if packet.type == TYPE_REQUEST:
             if not self.service_group:
